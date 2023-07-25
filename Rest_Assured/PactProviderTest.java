@@ -1,4 +1,4 @@
-package Project.PACT;
+package Project;
 
 import au.com.dius.pact.provider.junit.Provider;
 import au.com.dius.pact.provider.junit.State;
@@ -9,15 +9,14 @@ import au.com.dius.pact.provider.junit5.PactVerificationInvocationContextProvide
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.extension.ExtendWith;
-
 @Provider("UserProvider")
 @PactFolder("target/pacts")
+
 public class PactProviderTest {
     @BeforeEach
     void before(PactVerificationContext context) {
         // Set target for provider to send request to
         context.setTarget(new HttpTestTarget("localhost", 8585));
-
     }
     @TestTemplate
     @ExtendWith(PactVerificationInvocationContextProvider.class)
@@ -26,8 +25,7 @@ public class PactProviderTest {
         // using the contract generated in target/pacts
         context.verifyInteraction();
     }
-
-    // State to send the call to consumer
     @State("A request to create a user")
-    public void sampleState() {}
+    public void sampleState() {
+    }
 }
